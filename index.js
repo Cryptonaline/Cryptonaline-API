@@ -1,11 +1,15 @@
 const PORT = 4000;
 const express = require('express');
-const { livemintScraper } = require('./scrapers/livemint');
+const { livemintScraper, bInsiderScraper, timeScraper } = require('./scrapers');
 
 const app = express();
 
 app.get('/', async (req, res) => {
-  const posts = await livemintScraper();
+  let posts = [];
+  const livemintPosts = await livemintScraper();
+  const bInsiderPosts = await bInsiderScraper();
+  const timePosts = await timeScraper();
+  posts = [...livemintPosts, ...bInsiderPosts, ...timePosts];
   res.send({ posts });
 });
 
