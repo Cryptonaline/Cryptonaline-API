@@ -11,17 +11,12 @@ async function getDataByPost() {
   for (let post_link of urls) {
     let post_description = '';
     let post_title = '';
+    let image_url = '';
     const { data } = await axios.get(post_link);
     const $ = cheerio.load(data);
-    $('h1').each(function () {
-      post_title = $(this).text();
-    });
-    $('div.main_content').each(function () {
-      post_description = $(this).text();
-    });
-    $('source').each(function () {
-      image_url = validateUrl($(this).attr('srcset'), host);
-    });
+    post_title = $('h1').text();
+    post_description = $('div.main_content').text();
+    image_url = $('source').attr('srcset');
 
     posts.push({
       post_title,

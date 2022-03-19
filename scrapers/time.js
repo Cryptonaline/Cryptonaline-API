@@ -4,14 +4,38 @@ const { validateUrl } = require('../utils/validateUrl');
 const host = 'https://time.com';
 const url = 'https://time.com/nextadvisor/investing/cryptocurrency/';
 
+const urls = [];
+const posts = [];
+
+async function getDataByPost() {
+  for (let post_link of urls) {
+    let post_description = '';
+    let post_title = '';
+    let image_url = '';
+    const { data } = await axios.get(post_link);
+    const $ = cheerio.load(data);
+    post_title = $('h1.post__heading').text();
+    post_description = $('div.post__body').text();
+    image_url = $('picture').find('source').attr('srcset');
+
+    posts.push({
+      post_title,
+      post_link,
+      post_description,
+      image_url,
+      post_source: host,
+    });
+  }
+  return posts;
+}
+
 module.exports.timeScraper = async () => {
   const { data } = await axios.get(url);
   const $ = cheerio.load(data);
   const posts = [];
   $('h3.vertical-posts__title').each(function () {
-    const headline = $(this).text();
     const blogUrl = $(this).find('a').attr('href');
-    posts.push({ headline, blogUrl: validateUrl(blogUrl, host) });
+    urls.push(validateUrl(blogUrl, host));
   });
-  return posts;
+  return getDataByPost();
 };

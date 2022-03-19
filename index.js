@@ -26,5 +26,5 @@ app.use('/tweets', tweetsRouter);
 
 app.listen(config.PORT, () => {
   console.log(`Listening at ${config.HOST}:${config.PORT}`);
-  // dbInit();
+  dbInit();
 });
