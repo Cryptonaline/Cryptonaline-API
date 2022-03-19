@@ -8,11 +8,11 @@ const {
 
 router.get('/', async (req, res) => {
   let posts = [];
-  const livemintPosts = await livemintScraper();
+  // const livemintPosts = await livemintScraper();
   const bInsiderPosts = await bInsiderScraper();
-  const timePosts = await timeScraper();
+  // const timePosts = await timeScraper();
   // TODO: add more scrapers
-  posts = [...livemintPosts, ...bInsiderPosts, ...timePosts];
+  posts = [...bInsiderPosts];
   res.send({ posts });
 });
 
