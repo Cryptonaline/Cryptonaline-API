@@ -1,5 +1,6 @@
 const config = require('./config');
 const express = require('express');
+const pino = require('express-pino-logger');
 const {
   postsRouter,
   storiesRouter,
@@ -10,6 +11,7 @@ const {
 const app = express();
 
 app.use(express.json());
+app.use(pino());
 
 // health-check route
 app.get('/', async (req, res) => {
