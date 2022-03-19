@@ -12,7 +12,7 @@ async function getDataByPost() {
   for (const post_link of urls) {
     let post_description = '';
     let post_title = '';
-    let image_url = ''
+    let image_url = '';
     const { data } = await axios.get(post_link);
     const $ = cheerio.load(data);
     post_title = $('h1.headline').text();

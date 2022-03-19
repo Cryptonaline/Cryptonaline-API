@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "eslint": "^8.11.0",
+    "husky": "^7.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.0"
   }

@@ -1,6 +1,6 @@
 <h1 align="center">Cryptonaline API</h1>
 
-## Schema Design : 
+## Schema Design :
 
 [Creately Schema Design](https://app.creately.com/d/NAGzrdyFYTN/edit)
 

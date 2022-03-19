@@ -3,7 +3,8 @@ const pattern =
 
 const performConversion = (url, host) => host.concat(url);
 
-const validateUrl = (url, host) => url.match(pattern) ? url : performConversion(url, host);
+const validateUrl = (url, host) =>
+  url.match(pattern) ? url : performConversion(url, host);
 
 module.exports = {
   validateUrl,
