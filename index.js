@@ -1,16 +1,26 @@
-const PORT = 4000;
+const config = require('./config');
 const express = require('express');
-const { livemintScraper, bInsiderScraper, timeScraper } = require('./scrapers');
+const {
+  postsRouter,
+  storiesRouter,
+  tweetsRouter,
+  videosRouter,
+} = require('./routes');
 
 const app = express();
 
+app.use(express.json());
+
+// health-check route
 app.get('/', async (req, res) => {
-  let posts = [];
-  const livemintPosts = await livemintScraper();
-  const bInsiderPosts = await bInsiderScraper();
-  const timePosts = await timeScraper();
-  posts = [...livemintPosts, ...bInsiderPosts, ...timePosts];
-  res.send({ posts });
+  res.send({ status: 'ok' });
 });
 
-app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
+app.use('/posts', postsRouter);
+app.use('/videos', videosRouter);
+app.use('/stories', storiesRouter);
+app.use('/tweets', tweetsRouter);
+
+app.listen(config.PORT, () => {
+  console.log(`Listening at ${config.HOST}:${config.PORT}`);
+});

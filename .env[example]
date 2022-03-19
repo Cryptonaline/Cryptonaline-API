@@ -1,0 +1,5 @@
+# for development
+
+HOST=http://localhost
+PORT=4000
+MONGO_URI=your_uri
