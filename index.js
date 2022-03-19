@@ -1,6 +1,6 @@
-const config = require('./config');
 const express = require('express');
 const pino = require('express-pino-logger');
+const config = require('./config');
 const {
   postsRouter,
   storiesRouter,

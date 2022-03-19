@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
 const { validateUrl } = require('../utils/validateUrl');
+
 const host = 'https://www.businessinsider.in';
 const url = 'https://www.businessinsider.in/cryptocurrency';
 
@@ -8,7 +9,7 @@ const urls = [];
 const posts = [];
 
 async function getDataByPost() {
-  for (let post_link of urls) {
+  for (const post_link of urls) {
     let post_description = '';
     let post_title = '';
     let image_url = '';

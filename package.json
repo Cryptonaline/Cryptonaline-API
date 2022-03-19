@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
     "node-schedule": "^2.1.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "eslint": "^8.11.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.0"
   }
 }

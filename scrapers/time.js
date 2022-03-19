@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
 const { validateUrl } = require('../utils/validateUrl');
+
 const host = 'https://time.com';
 const url = 'https://time.com/nextadvisor/investing/cryptocurrency/';
 
@@ -8,7 +9,7 @@ const urls = [];
 const posts = [];
 
 async function getDataByPost() {
-  for (let post_link of urls) {
+  for (const post_link of urls) {
     let post_description = '';
     let post_title = '';
     let image_url = '';
@@ -32,7 +33,6 @@ async function getDataByPost() {
 module.exports.timeScraper = async () => {
   const { data } = await axios.get(url);
   const $ = cheerio.load(data);
-  const posts = [];
   $('h3.vertical-posts__title').each(function () {
     const blogUrl = $(this).find('a').attr('href');
     urls.push(validateUrl(blogUrl, host));
