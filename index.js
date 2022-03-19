@@ -7,6 +7,7 @@ const {
   tweetsRouter,
   videosRouter,
 } = require('./routes');
+const { dbInit } = require('./db');
 
 const app = express();
 
@@ -25,4 +26,5 @@ app.use('/tweets', tweetsRouter);
 
 app.listen(config.PORT, () => {
   console.log(`Listening at ${config.HOST}:${config.PORT}`);
+  dbInit();
 });
