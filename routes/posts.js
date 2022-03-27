@@ -8,15 +8,22 @@ const {
 } = require('../scrapers');
 const { postsController } = require('../controllers');
 
-router.get('/', async (req, res) => {
-  let posts = [];
-  // TODO: break them into seperate routes for example: /livemint etc
+router.get('/livemint', async (req, res) => {
   const livemintPosts = await livemintScraper();
+  await postsController(livemintPosts);
+  res.send(livemintPosts);
+});
+
+router.get('/businessinsider', async (req, res) => {
   const bInsiderPosts = await bInsiderScraper();
+  await postsController(bInsiderPosts);
+  res.send(bInsiderPosts);
+});
+
+router.get('/time', async (req, res) => {
   const timePosts = await timeScraper();
-  posts = [...timePosts, ...bInsiderPosts, ...livemintPosts];
-  await postsController(posts);
-  res.send({ posts });
+  await postsController(timePosts);
+  res.send(timePosts);
 });
 
 module.exports = router;
